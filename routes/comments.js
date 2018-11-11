@@ -29,6 +29,9 @@ router.post("/", middleware.isLoggedIn, function(req,res){
 					console.log(err);
 				}
 				else{
+					comment.author.id = req.user._id;
+					comment.author.username = req.user.username;
+
 					comment.save();
 					movie.comments.push(comment);
 					movie.save();
@@ -53,7 +56,27 @@ router.get("/:comment_id/edit", function(req,res){
 
 // Update Route (update comment and redirect)
 router.put("/:comment_id", function(req,res){
-	res.send("PUTTED");
+	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, comment){
+		if(err){
+			res.redirect("back")
+		}
+		else{
+			res.redirect("/movies/" + req.params.id );
+		}
+	});
+
+});
+
+// Destroy Route (delete comment and redirect)
+router.delete("/:comment_id", function(req,res){
+	Comment.findByIdAndRemove(req.params.comment_id, function(err){
+		if(err){
+			res.redirect("/movies/" + req.params.id );
+		}
+		else{
+			res.redirect("/movies/" + req.params.id );
+		}
+	});
 });
 
 module.exports = router;

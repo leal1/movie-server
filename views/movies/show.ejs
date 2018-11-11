@@ -40,11 +40,18 @@
 			</div>
 			<hr>
 		<% for (var i = 0; i < movie.comments.length; i++) { -%>
-			<strong> <%= movie.comments[i].author %></strong>
+			<strong> <%= movie.comments[i].author.username %></strong>
 			<span class="pull-right"> 0 days ago </span>
 			<p> <%= movie.comments[i].text %>  </p>
-			<div> <a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>/edit"> EDIT </a>
+			<div> 
+				<a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>/edit">
+				 EDIT 
+				</a>
+				<form action="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>?_method=DELETE" method = "POST" class="delete-form">
+					<button class="btn btn-danger"> Delete</button>
+				</form>
 			</div>
+
 		<% } -%>
 	</div>
 
