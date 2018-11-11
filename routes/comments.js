@@ -2,9 +2,10 @@ var express = require("express");
 var router = express.Router({mergeParams:true});
 var Movie = require("../models/movie");
 var Comment = require("../models/comment");
+var middleware = require("../middleware");
 
 // New Route (render new comment form)
-router.get("/new", function(req,res){
+router.get("/new", middleware.isLoggedIn, function(req,res){
 	Movie.findById(req.params.id, function(err, movie){
 		if(err){
 			console.log(err);
@@ -17,7 +18,7 @@ router.get("/new", function(req,res){
 });
 
 // Create Route (create new comment and redirect)
-router.post("/", function(req,res){
+router.post("/", middleware.isLoggedIn, function(req,res){
 	Movie.findById(req.params.id, function(err, movie){
 		if(err){
 			console.log(err);

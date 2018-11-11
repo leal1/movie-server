@@ -35,11 +35,16 @@
 	</div>
 
 	<div class="well">
+			<div class="text-right">
+				<a class="btn btn-info" href="/movies/<%= movie._id%>/comments/new"> Add New Comment</a>
+			</div>
+			<hr>
 		<% for (var i = 0; i < movie.comments.length; i++) { -%>
 			<strong> <%= movie.comments[i].author %></strong>
 			<span class="pull-right"> 0 days ago </span>
 			<p> <%= movie.comments[i].text %>  </p>
-			<a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>/edit"> EDIT </a>
+			<div> <a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>/edit"> EDIT </a>
+			</div>
 		<% } -%>
 	</div>
 

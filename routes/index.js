@@ -27,4 +27,22 @@ router.post("/register", function(req,res){
 	});
 });
 
+// New Route (Render login form)
+router.get("/login", function(req,res){
+	res.render("login");
+});
+
+// Create Route (Logins in user)
+router.post("/login", passport.authenticate("local", 
+	{
+		successRedirect: "/movies",
+		failureRedirect: "/login"
+	}));
+
+// Logout 
+router.get("/logout", function(req,res){
+	req.logout();
+	res.redirect("/movies");
+});
+
 module.exports = router;

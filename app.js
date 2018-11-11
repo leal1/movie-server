@@ -7,7 +7,10 @@ methodOverride  = require("method-override"),
 passport		= require("passport"),
 LocalStrategy   = require("passport-local"),
 User 			= require("./models/user"),
+
 app 			= express();
+
+// REQUIRING ROUTES
 
 var movieRoutes = require("./routes/movies");
 var indexRoutes = require("./routes/index");
@@ -62,7 +65,10 @@ passport.deserializeUser(User.deserializeUser());
 
 // 	}
 // });
-
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next();
+});
 
 app.use("/movies", movieRoutes);
 app.use("/", indexRoutes);
