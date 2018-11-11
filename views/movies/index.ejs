@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+
+<div class="container">
+	<header class="jumbotron gray">
+		<div class="container">
+			<h1>Movies Catalog</h1>
+			<p>View our selection of movies!</p>
+			<a class="btn btn-lg btn-danger" href="/movies/new"> Add New Movie </a>
+		</div>
+	</header>
+
+	<div id="movie-index" class="row text-center">
+		<% for (let i = 0; i < movies.length; i++) { -%>
+			<div class="col-md-3 col-sm-6">
+
+				<div class="thumbnail">
+					<img src="<%=movies[i].image%>">
+					<div class="caption">
+						<h4><%= movies[i].title%></h4>
+					</div>
+
+					<a class="btn btn-sm btn-danger" href="/movies/<%= movies[i]._id %>"> See More... </a>
+
+				</div>
+			</div>
+
+		<% } %>
+	</div>
+</div>
+
+
+
+<%include ../partials/footer%>

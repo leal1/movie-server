@@ -1,0 +1,49 @@
+<% include ../partials/header %>
+
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-3">
+			<p class="lead"> STUFF </p>
+			<div class="list-group">
+				<li class="list-group-item active"> Tab 1</li>
+				<li class="list-group-item"> Tab 2</li>
+				<li class="list-group-item"> Tab 3</li>
+			</div>
+		</div>
+	
+		<div class="col-md-6">
+			<div class="thumbnail">
+				<div class="caption">
+					<h4 class="pull-right"> Rating Goes Here</h4>
+					<h4><a> <%= movie.title %> </a></h4>
+
+					
+					<img  class="img-responsive gray" src="<%=movie.image%>">	
+					<p><%=movie.description%></p>
+					<p>Add a submitted by</p>
+					<div><%=movie.added.toDateString()%></div>
+					<a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/edit"> Edit </a>
+					<form class="delete-form" action="/movies/<%= movie._id%>?_method=DELETE" method="POST">
+						<button class="btn btn-sm btn-danger">Delete </button>
+					</form>
+					<a class="btn btn-sm btn-info" href="/movies">Back to All Movies</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="well">
+		<% for (var i = 0; i < movie.comments.length; i++) { -%>
+			<strong> <%= movie.comments[i].author %></strong>
+			<span class="pull-right"> 0 days ago </span>
+			<p> <%= movie.comments[i].text %>  </p>
+			<a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>/edit"> EDIT </a>
+		<% } -%>
+	</div>
+
+
+</div>
+
+<% include ../partials/footer %>
