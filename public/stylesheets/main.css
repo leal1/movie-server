@@ -1,10 +1,11 @@
 body{
 	font-family: "Roboto";
 	background-color: #2b2b2b;
+	padding-top: 80px;
 }
 
-.gray {
-	background-color: #ccc;
+.white-background {
+	background-color: #fbfbfb;
 }
 .gray-text{
 	color: #ccc;
