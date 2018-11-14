@@ -7,6 +7,7 @@ middlewareObj.isLoggedIn = function(req, res, next){
 	if(req.isAuthenticated()){
 		return next();
 	}
+	req.flash("error", "You must be logged in first");
 	res.redirect("/login");
 }
 
@@ -15,6 +16,7 @@ middlewareObj.checkMovieOwnership = function(req, res, next){
 	if(req.isAuthenticated()){
 		Movie.findById(req.params.id, function(err, movie){
 			if(err){
+				req.flash("error", "Couldn't find Movie");
 				res.redirect("back");
 			}
 			else{
@@ -22,12 +24,14 @@ middlewareObj.checkMovieOwnership = function(req, res, next){
 					next();
 				}
 				else{
+					req.flash("error", "You are not right user!");
 					res.redirect("back");
 				}
 			}
 		});
 	}
 	else{
+		req.flash("error", "You must be logged in first");
 		res.redirect("back");
 	}
 }
@@ -37,6 +41,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
 	if(req.isAuthenticated()){
 		Comment.findById(req.params.comment_id, function(err, comment){
 			if(err){
+				req.flash("error", "Couldn't find Comment");
 				res.redirect("back");
 			}
 			else{
@@ -44,12 +49,14 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
 					next();
 				}
 				else{
+					req.flash("error", "You are not the right user!");
 					res.redirect("back");
 				}
 			}
 		});
 	}
 	else{
+		req.flash("error", "You must be logged in first");
 		res.redirect("back");
 	}
 }
