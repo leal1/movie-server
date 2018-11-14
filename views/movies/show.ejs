@@ -22,12 +22,16 @@
 					
 					<img  class="img-responsive gray" src="<%=movie.image%>">	
 					<p><%=movie.description%></p>
-					<p>Add a submitted by</p>
+					<p> 
+						<em>Submitted By <%= movie.author.username%></em>
+					</p>
 					<div><%=movie.added.toDateString()%></div>
-					<a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/edit"> Edit </a>
-					<form class="delete-form" action="/movies/<%= movie._id%>?_method=DELETE" method="POST">
-						<button class="btn btn-sm btn-danger">Delete </button>
-					</form>
+					<% if(currentUser && movie.author.id.equals(currentUser._id)){ %>
+						<a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/edit"> Edit </a>
+						<form class="delete-form" action="/movies/<%= movie._id%>?_method=DELETE" method="POST">
+							<button class="btn btn-sm btn-danger">Delete </button>
+						</form>
+					<% } %>
 					<a class="btn btn-sm btn-info" href="/movies">Back to All Movies</a>
 				</div>
 			</div>
@@ -43,14 +47,16 @@
 			<strong> <%= movie.comments[i].author.username %></strong>
 			<span class="pull-right"> 0 days ago </span>
 			<p> <%= movie.comments[i].text %>  </p>
-			<div> 
-				<a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>/edit">
-				 EDIT 
-				</a>
-				<form action="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>?_method=DELETE" method = "POST" class="delete-form">
-					<button class="btn btn-danger"> Delete</button>
-				</form>
-			</div>
+			<% if(currentUser && movie.author.id.equals(currentUser._id)){ %>
+				<div> 
+					<a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>/edit">
+					 EDIT 
+					</a>
+					<form action="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>?_method=DELETE" method = "POST" class="delete-form">
+						<button class="btn btn-danger"> Delete</button>
+					</form>
+				</div>
+			<% } %>
 
 		<% } -%>
 	</div>
