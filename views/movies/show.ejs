@@ -5,55 +5,58 @@
 	<div class="row">
 
 		<div class="col-md-3">
-			<p class="lead"> STUFF </p>
+		
 			<div class="list-group">
-				<li class="list-group-item active"> Tab 1</li>
-				<li class="list-group-item"> Tab 2</li>
-				<li class="list-group-item"> Tab 3</li>
+				<a href="/movies"> <li class="list-group-item list-group-item-action"> Back to All Movies</li> </a>
+				<a href="#comments"> <li class="list-group-item list-group-item-action"> Comments </li> </a>
+	
 			</div>
 		</div>
 	
 		<div class="col-md-6">
-			<div class="thumbnail">
+			<div class="card">
 				<div class="caption">
-					<h4 class="pull-right"> Rating Goes Here</h4>
+					<h4 class="float-right"> Rating Goes Here</h4>
 					<h4><a> <%= movie.title %> </a></h4>
-
-					
-					<img  class="img-responsive gray" src="<%=movie.image%>">	
-					<p><%=movie.description%></p>
+					<img  class="card-img-top" src="<%=movie.image%>">
+					<hr>	
+					<p class="card-text"><%=movie.description%></p>
 					<p> 
-						<em>Submitted By <%= movie.author.username%></em>
+						<em>Submitted By <%= movie.author.username%> on <%=movie.added.toDateString()%></em> 
 					</p>
-					<div><%=movie.added.toDateString()%></div>
+			
 					<% if(currentUser && movie.author.id.equals(currentUser._id)){ %>
 						<a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/edit"> Edit </a>
 						<form class="delete-form" action="/movies/<%= movie._id%>?_method=DELETE" method="POST">
 							<button class="btn btn-sm btn-danger">Delete </button>
 						</form>
 					<% } %>
-					<a class="btn btn-sm btn-info" href="/movies">Back to All Movies</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="well">
+	<div id="comments" class="card">
 			<div class="text-right">
 				<a class="btn btn-info" href="/movies/<%= movie._id%>/comments/new"> Add New Comment</a>
 			</div>
 			<hr>
 		<% for (var i = 0; i < movie.comments.length; i++) { -%>
-			<strong> <%= movie.comments[i].author.username %></strong>
-			<span class="pull-right"> 0 days ago </span>
-			<p> <%= movie.comments[i].text %>  </p>
+			<div>
+			  <div class="float-right"> 10 days ago</div>
+			  <strong> <%= movie.comments[i].author.username %>  </strong>
+			 </div>
+			  
+			
+			
+			<p class="card-text"> <%= movie.comments[i].text %>  </p>
 			<% if(currentUser && movie.author.id.equals(currentUser._id)){ %>
 				<div> 
 					<a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>/edit">
 					 EDIT 
 					</a>
 					<form action="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>?_method=DELETE" method = "POST" class="delete-form">
-						<button class="btn btn-danger"> Delete</button>
+						<button class="btn btn-sm btn-danger"> Delete</button>
 					</form>
 				</div>
 			<% } %>
