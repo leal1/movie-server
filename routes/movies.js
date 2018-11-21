@@ -3,6 +3,7 @@ var router = express.Router();
 var Movie = require("../models/movie");
 var Comment = require("../models/comment");
 var middleware = require("../middleware");
+var request = require("request");
 
 // Index Route (Shows all Movies)
 router.get("/", function(req,res){
@@ -50,7 +51,22 @@ router.get("/:id", function(req,res){
 			console.log(err);
 		}
 		else{
-			res.render("movies/show", {movie:movie});
+			// API Request to get IMDB rating from omdb API
+			var key = "&apikey=thewdb";
+			var query = movie.title;
+
+			var url = "http://omdbapi.com/?t=" + query + key;
+
+			request(url, function(error, response, body){
+				if(!error && response.statusCode == 200){
+					var data = JSON.parse(body);
+					res.render("movies/show", {movie:movie, rating: data["imdbRating"]});
+				}
+				else{
+					res.render("movies/show", {movie:movie});
+				}
+			});
+			
 		}
 	});
 });

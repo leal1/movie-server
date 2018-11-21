@@ -16,7 +16,9 @@
 		<div class="col-md-6">
 			<div class="card">
 				<div class="caption">
-					<h4 class="float-right"> Rating Goes Here</h4>
+					<% if(rating && rating > 0){%>
+					<h4 class="float-right"> <em>  <i style="color: orange;" class="fas fa-star"></i><%= rating %>/10 </em></h4>
+					<% } %>
 					<h4><a> <%= movie.title %> </a></h4>
 					<img  class="card-img-top" src="<%=movie.image%>">
 					<hr>	
