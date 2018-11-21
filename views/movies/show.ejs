@@ -43,7 +43,7 @@
 			<hr>
 		<% for (var i = 0; i < movie.comments.length; i++) { -%>
 			<div>
-			  <div class="float-right"> Posted on <%= movie.comments[i].posted.toLocaleString("en-US") %></div>
+			  <div class="float-right"> <em><%= movie.comments[i].posted.toLocaleString("en-US") %> </em></div>
 			  <strong> <%= movie.comments[i].author.username %>  </strong>
 			 </div>
 			  
