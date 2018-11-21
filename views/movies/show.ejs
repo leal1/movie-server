@@ -50,7 +50,7 @@
 			
 			
 			<p class="card-text"> <%= movie.comments[i].text %>  </p>
-			<% if(currentUser && movie.author.id.equals(currentUser._id)){ %>
+			<% if(currentUser && movie.comments[i].author.id.equals(currentUser._id)){ %>
 				<div> 
 					<a class="btn btn-sm btn-success" href="/movies/<%= movie._id%>/comments/<%= movie.comments[i]._id%>/edit">
 					 EDIT 
@@ -59,6 +59,7 @@
 						<button class="btn btn-sm btn-danger"> Delete</button>
 					</form>
 				</div>
+				<hr>
 			<% } %>
 
 		<% } -%>

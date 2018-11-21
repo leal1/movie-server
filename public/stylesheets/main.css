@@ -1,19 +1,17 @@
 body{
 	font-family: "Roboto";
-
-
+	background-color: #333;
 }
 nav{
 	margin-bottom:60px;
 }
 
-.white-background {
-	background-color: #fbfbfb;
+.dark-background {
+	background-color: #191919;
 }
-.gray-text{
-	color: #ccc;
+.white-text{
+	color: #fff;
 }
-
 
 header div{
 	text-align: center;
@@ -27,7 +25,6 @@ header div{
 	background-color: #fbfbfb;
 }
 
-
 #movie-index{
 	display: flex;
 	flex-wrap: wrap;
@@ -38,10 +35,6 @@ header div{
 
 #comments{
 	margin-top: 80px;
-}
-
-.jumbotron{
-	color: #d11d05;
 }
 
 .jumbotron h1{
