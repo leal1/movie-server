@@ -19,7 +19,9 @@ var commentRoutes = require("./routes/comments");
 
 
 // APP CONFIG
-mongoose.connect("mongodb://localhost/movie_server", {useNewUrlParser:true});
+//mongoose.connect("mongodb://localhost/movie_server", {useNewUrlParser:true});
+mongoose.connect("mongodb://andy:abc123@ds123444.mlab.com:23444/my-movie-server", {useNewUrlParser:true});
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
