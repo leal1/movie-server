@@ -23,7 +23,11 @@ router.post("/register", function(req,res){
 			req.flash("error", err.message);
 			return res.redirect("/register");
 		}
-		res.redirect("/movies");
+		passport.authenticate("local")(req,res,function(){
+			req.flash("success", "Welcome " + user.username);
+			res.redirect("/movies");
+		});
+		
 	});
 });
 
@@ -36,7 +40,8 @@ router.get("/login", function(req,res){
 router.post("/login", passport.authenticate("local", 
 	{
 		successRedirect: "/movies",
-		failureRedirect: "/login"
+		failureRedirect: "/login",
+		failureFlash: true
 	}));
 
 // Logout 
