@@ -20,7 +20,7 @@ var commentRoutes = require("./routes/comments");
 
 // APP CONFIG
 //mongoose.connect("mongodb://localhost/movie_server", {useNewUrlParser:true});
-mongoose.connect("mongodb://andyle:andyle4@ds123444.mlab.com:23444/my-movie-server");
+mongoose.connect("mongodb://andyle:andyle4@ds123444.mlab.com:23444/mymovieserver", {useNewUrlParser:true});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
