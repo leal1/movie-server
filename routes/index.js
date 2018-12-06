@@ -3,9 +3,9 @@ var router = express.Router();
 var User = require("../models/user");
 var passport = require("passport");
 
-// Home Page (Landing Page)
+// Home Page (Redirect)
 router.get("/", function(req,res){
-	res.render("landing");
+	res.redirect("/movies");
 });
 
 // AUTH ROUTES

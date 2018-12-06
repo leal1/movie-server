@@ -12,9 +12,7 @@ nav{
 .white-text{
 	color: #fff;
 }
-.yellow-background{
-	background-color: 
-}
+
 
 header div{
 	text-align: center;
@@ -30,7 +28,9 @@ header div{
 
 #movie-index{
 	display: flex;
+	justify-content: space-between;
 	flex-wrap: wrap;
+
 }
 #movie-index img{
 	width: 100%;
